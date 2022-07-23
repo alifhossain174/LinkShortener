@@ -69,6 +69,10 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -80,20 +84,42 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div>
+                    <h1>URL Shortener</h1>
+                    <form action="{{url('generate/url')}}" method="POST">
+                        @csrf
+                        <input type="text" name="actual_url" class="form-control" style="display: block; width: 100%; margin-bottom: 10px">
+                        <button type="submit">Generate</button>
+                    </form>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <table cellpadding="3" class="table" style="width: 100%;margin-top: 20px; border-collapse: collapse;"
+                    border="1">
+                    <thead>
+                        <tr>
+                            <th scope="col">SL</th>
+                            <th scope="col">Original URL</th>
+                            <th scope="col">Generated URL</th>
+                            <th scope="col">Copy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $sl = 1;
+                        @endphp
+                        @foreach ($data as $item)
+                        <tr>
+                            <th scope="row">{{$sl++}}</th>
+                            <td>{{$item->actual_url}}</td>
+                            <td>http://127.0.0.1:8000/generated/{{$item->generated_url}}</td>
+                            <td>
+                                {{-- <a href="{{url('delete/url')}}/{{$item->id}}">Delete</a> --}}
+                                <a href="#">Copy</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>

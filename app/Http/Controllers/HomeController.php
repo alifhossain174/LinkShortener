@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = DB::table('u_r_l_s')->orderBy('id','desc')->get();
+        return view('welcome',compact('data'));
+    }
+
+    public function generateUrl(Request $request){
+        DB::table('u_r_l_s')->insert([
+            'actual_url' => $request->actual_url,
+            'generated_url' => time(),
+        ]);
+        return back();
+    }
+
+    public function redirectToActual($id){
+       $data = DB::table('u_r_l_s')->where('generated_url',$id)->first();
+       return redirect($data->actual_url);
+    }
+
+    public function deleteUrl($id){
+        DB::table('u_r_l_s')->where('id',$id)->delete();
+        return back();
     }
 }
