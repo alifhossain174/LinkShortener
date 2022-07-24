@@ -12,6 +12,7 @@
     <style>
         body {
             padding-top: 100px;
+            background-color: #eee;
         }
 
         .header {
@@ -38,14 +39,6 @@
             background: #373B44;
             background: -webkit-linear-gradient(to right, #4286f4, #373B44);
             background: linear-gradient(to right, #4286f4, #373B44);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #eee;
         }
 
         .content {

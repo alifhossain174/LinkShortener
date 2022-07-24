@@ -12,6 +12,7 @@
     <style>
         body {
             padding-top: 100px;
+            background-color: #eee;
         }
 
         .header {
@@ -32,14 +33,6 @@
             bottom: 0;
             left: 0;
             width: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #eee;
         }
 
         .content {
