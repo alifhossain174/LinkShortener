@@ -7,6 +7,7 @@
     <title>Link Shortener</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <style>
         body {
@@ -83,13 +84,13 @@
                             <tr>
                                 <th scope="row">{{ $index + $data->firstItem() }}</th>
                                 <td>{{ $item->actual_url }}</td>
-                                <td>http://127.0.0.1:8000/generated/{{ $item->generated_url }}</td>
+                                <td>http://127.0.0.1:8000/short/{{ $item->generated_url }}</td>
                                 <td>{{ $item->click }}</td>
                                 <td>
                                     {{-- <a href="{{url('delete/url')}}/{{$item->id}}">Delete</a> --}}
                                     <a href="javascript:void(0)" data-toggle="tooltip"
                                         class="btn btn-info btn-sm rounded generateLink"
-                                        data-id="{{ $item->generated_url }}">Copy</a>
+                                        data-id="http://127.0.0.1:8000/short/{{ $item->generated_url }}">Copy</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -114,8 +115,12 @@
         $('body').on('click', '.generateLink', function() {
             var slug = $(this).data('id');
             navigator.clipboard.writeText(slug);
+            toastr.success("Link Copied to Clipboard");
         });
     </script>
+
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 
 </body>
 

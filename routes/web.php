@@ -21,6 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('generate/url','HomeController@generateUrl');
-Route::get('generated/{time}','HomeController@redirectToActual');
-Route::get('delete/url/{id}','HomeController@deleteUrl');
+Route::post('generate/url', 'HomeController@generateUrl');
+Route::get('short/{time}', 'HomeController@redirectToActual');
+Route::get('delete/url/{id}', 'HomeController@deleteUrl');
