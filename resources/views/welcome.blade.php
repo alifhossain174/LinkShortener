@@ -60,7 +60,6 @@
         <div class="middle_section">
             <div class="container">
 
-
                 <h3 class="text-center mt-3"><b>Link Shortener</b></h3>
                 <form action="{{ url('generate/url') }}" method="POST" class="text-center">
                     @csrf
