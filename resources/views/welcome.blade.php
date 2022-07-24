@@ -113,16 +113,7 @@
     <script>
         $('body').on('click', '.generateLink', function() {
             var slug = $(this).data('id');
-            // $('#saveBtn3').val("edit-user");
-            // $('#ajaxModel3').modal('show');
-            // $('#link3').val(slug);
-            // $("#saveBtn3").html("<i class='far fa-clone'></i> Create Link");
-
-            var copyText = slug;
-            document.addEventListener('copy', function(e) {
-                e.clipboardData.setData('text/plain', copyText);
-                e.preventDefault();
-            }, true);
+            navigator.clipboard.writeText(slug);
         });
     </script>
 
