@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2022 at 05:12 AM
+-- Generation Time: Jul 24, 2022 at 01:11 PM
 -- Server version: 10.1.21-MariaDB
--- PHP Version: 7.4.16
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -92,7 +91,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', '2022-07-24 02:39:58', '$2y$10$XjbUIxvRyi7zNPBw8r9uYuCaltUiV8bXLk2Piwx0h/cbA6dBr7Ry6', NULL, NULL, NULL);
+(1, 'Admin2', 'admin@gmail.com', '2022-07-24 02:39:58', '$2y$10$Pak5mdlcPzG8Ljnmo16JM.YYku4EMD6SQqL382GQMccunv4d.TCua', NULL, NULL, '2022-07-24 01:05:33');
 
 -- --------------------------------------------------------
 
@@ -149,7 +148,7 @@ INSERT INTO `u_r_l_s` (`id`, `actual_url`, `generated_url`, `click`, `created_at
 (120, 'https://hkhungry.com/peaky-blinders-poster', '1658613167', 0, NULL, NULL),
 (121, 'https://hkhungry.com/never-underestimate-a-woman', '1658613251', 0, NULL, NULL),
 (122, 'https://hkhungry.com/never-underestimate-a-woman', '1658613255', 0, NULL, NULL),
-(123, 'https://hkhungry.com/autism-its-not-a-disability-its-a-different-ability', '1658613549', 2, NULL, NULL);
+(123, 'https://hkhungry.com/autism-its-not-a-disability-its-a-different-ability', '1658613549', 3, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -194,14 +193,11 @@ ALTER TABLE `u_r_l_s`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `u_r_l_s`
 --
 ALTER TABLE `u_r_l_s`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
