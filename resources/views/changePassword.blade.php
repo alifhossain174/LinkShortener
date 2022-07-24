@@ -23,6 +23,12 @@
             left: 0;
             width: 100%;
         }
+
+        .card-header {
+            background: #373B44;
+            background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+            background: linear-gradient(to right, #4286f4, #373B44);
+        }
     </style>
 </head>
 
@@ -44,7 +50,7 @@
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li> --}}
                         </ul>
-                        <a class="nav-link text-white" href="{{ url('change/password') }}">Change Password</a>
+                        <a class="nav-link text-white" href="{{ url('/home') }}">Home</a>
                         <a href="{{ route('logout') }}" class="btn btn-sm btn-danger"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <b>{{ __('Logout') }}</b></a>
@@ -60,43 +66,53 @@
     <section>
         <div class="middle_section">
             <div class="container">
-
-                <h3 class="text-center mt-3"><b>Link Shortener</b></h3>
-                <form action="{{ url('generate/url') }}" method="POST" class="text-center">
-                    @csrf
-                    <input type="text" name="actual_url" class="form-control mb-2"
-                        placeholder="Type/Paste the URL here">
-                    <button type="submit" class="btn btn-success">Generate</button>
-                </form>
-
-                <table class="table table-striped mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">SL</th>
-                            <th scope="col">Original URL</th>
-                            <th scope="col">Generated URL</th>
-                            <th scope="col">Visit</th>
-                            <th scope="col">Copy</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $index => $item)
-                            <tr>
-                                <th scope="row">{{ $index + $data->firstItem() }}</th>
-                                <td>{{ $item->actual_url }}</td>
-                                <td>http://127.0.0.1:8000/short/{{ $item->generated_url }}</td>
-                                <td>{{ $item->click }}</td>
-                                <td>
-                                    {{-- <a href="{{url('delete/url')}}/{{$item->id}}">Delete</a> --}}
-                                    <a href="javascript:void(0)" data-toggle="tooltip"
-                                        class="btn btn-info btn-sm rounded generateLink"
-                                        data-id="http://127.0.0.1:8000/short/{{ $item->generated_url }}">Copy</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                {{ $data->links() }}
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <b class="text-white">Change Password</b>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('password/change') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>User Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ $userInfo->name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>User Email</label>
+                                        <input type="text" name="email" class="form-control"
+                                            value="{{ $userInfo->email }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Current Password</label>
+                                        <input type="text" name="password" class="form-control"
+                                            placeholder="Current Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>New Password</label>
+                                        <input type="text" name="new_password" class="form-control"
+                                            placeholder="New Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 text-right">
+                                    <button type="submit" class="btn btn-primary rounded">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -110,14 +126,6 @@
 
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
-
-    <script>
-        $('body').on('click', '.generateLink', function() {
-            var slug = $(this).data('id');
-            navigator.clipboard.writeText(slug);
-            toastr.success("Link Copied to Clipboard");
-        });
-    </script>
 
 </body>
 

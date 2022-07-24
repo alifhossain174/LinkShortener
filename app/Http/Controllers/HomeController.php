@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Brian2694\Toastr\Facades\Toastr;
 
 class HomeController extends Controller
 {
@@ -50,5 +55,33 @@ class HomeController extends Controller
     {
         DB::table('u_r_l_s')->where('id', $id)->delete();
         return back();
+    }
+
+    public function changePasswordPage()
+    {
+        $userInfo = User::where('id', Auth::user()->id)->first();
+        return view('changePassword', compact('userInfo'));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $userInfo = User::where('id', Auth::user()->id)->first();
+        if (Hash::check($request->password, $userInfo->password)) {
+            User::where('id', Auth::user()->id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+            if ($request->new_password != '') {
+                User::where('id', Auth::user()->id)->update([
+                    'password' => Hash::make($request->new_password),
+                    'updated_at' => Carbon::now()
+                ]);
+            }
+            Toastr::success('Successfully Chnaged', 'Success');
+            return redirect()->back();
+        } else {
+            Toastr::error('Your given current Password is wrong', 'Wrong Password');
+            return redirect()->back();
+        }
     }
 }
