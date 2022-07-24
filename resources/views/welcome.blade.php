@@ -1,126 +1,131 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Link Shortener</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px
+        }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        .header {
+            background: #373B44;
+            background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+            background: linear-gradient(to right, #4286f4, #373B44);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
 
-            .full-height {
-                height: 100vh;
-            }
+<body>
+    <section>
+        <div class="header">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="{{ url('/home') }}"><b class="text-white">Link Shortener</b></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            {{-- <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li> --}}
+                        </ul>
+                        <a href="{{ route('logout') }}" class="btn btn-sm btn-danger"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <b>{{ __('Logout') }}</b></a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+    <section>
+        <div class="middle_section">
+            <div class="container">
 
-            <div class="content">
-                <div>
-                    <h1>URL Shortener</h1>
-                    <form action="{{url('generate/url')}}" method="POST">
-                        @csrf
-                        <input type="text" name="actual_url" class="form-control" style="display: block; width: 100%; margin-bottom: 10px">
-                        <button type="submit">Generate</button>
-                    </form>
-                </div>
 
-                <table cellpadding="3" class="table" style="width: 100%;margin-top: 20px; border-collapse: collapse;"
-                    border="1">
+                <h3 class="text-center mt-3"><b>Link Shortener</b></h3>
+                <form action="{{ url('generate/url') }}" method="POST" class="text-center">
+                    @csrf
+                    <input type="text" name="actual_url" class="form-control mb-2"
+                        placeholder="Type/Paste the URL here">
+                    <button type="submit" class="btn btn-success">Generate</button>
+                </form>
+
+                <table class="table table-striped mt-4">
                     <thead>
                         <tr>
                             <th scope="col">SL</th>
                             <th scope="col">Original URL</th>
                             <th scope="col">Generated URL</th>
+                            <th scope="col">Visit</th>
                             <th scope="col">Copy</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $sl = 1;
-                        @endphp
-                        @foreach ($data as $item)
-                        <tr>
-                            <th scope="row">{{$sl++}}</th>
-                            <td>{{$item->actual_url}}</td>
-                            <td>http://127.0.0.1:8000/generated/{{$item->generated_url}}</td>
-                            <td>
-                                {{-- <a href="{{url('delete/url')}}/{{$item->id}}">Delete</a> --}}
-                                <a href="#">Copy</a>
-                            </td>
-                        </tr>
+                        @foreach ($data as $index => $item)
+                            <tr>
+                                <th scope="row">{{ $index + $data->firstItem() }}</th>
+                                <td>{{ $item->actual_url }}</td>
+                                <td>http://127.0.0.1:8000/generated/{{ $item->generated_url }}</td>
+                                <td>{{ $item->click }}</td>
+                                <td>
+                                    {{-- <a href="{{url('delete/url')}}/{{$item->id}}">Delete</a> --}}
+                                    <a href="javascript:void(0)" data-toggle="tooltip"
+                                        class="btn btn-info btn-sm rounded generateLink"
+                                        data-id="{{ $item->generated_url }}">Copy</a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
+                {{ $data->links() }}
             </div>
         </div>
-    </body>
+    </section>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $('body').on('click', '.generateLink', function() {
+            var slug = $(this).data('id');
+            // $('#saveBtn3').val("edit-user");
+            // $('#ajaxModel3').modal('show');
+            // $('#link3').val(slug);
+            // $("#saveBtn3").html("<i class='far fa-clone'></i> Create Link");
+
+            var copyText = slug;
+            document.addEventListener('copy', function(e) {
+                e.clipboardData.setData('text/plain', copyText);
+                e.preventDefault();
+            }, true);
+        });
+    </script>
+
+</body>
+
 </html>
