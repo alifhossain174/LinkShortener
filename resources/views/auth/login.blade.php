@@ -81,6 +81,12 @@
         </span>
     </div>
 
+    <style>
+        .login100-form {
+            padding: 43px 88px 53px 190px !important;
+        }
+    </style>
+
 
     <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
         @csrf
@@ -126,11 +132,15 @@
             </div>
         </div> --}}
 
-        <div class="container-login100-form-btn">
+        <div class="container-login100-form-btn" style="margin-bottom: 30px">
             <button type="submit" class="login100-form-btn">
                 Login
             </button>
         </div>
+
+        <a href="http://www.facebook.com/gstl.tech">Developed By Genesis Software &
+            Technology
+            Ltd.</a>
     </form>
 
 </div>

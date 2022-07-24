@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('generate/url', 'HomeController@generateUrl');
-Route::get('short/{time}', 'HomeController@redirectToActual');
+Route::get('short/{time}', 'FrontendController@redirectToActual');
 Route::get('delete/url/{id}', 'HomeController@deleteUrl');
 Route::get('/change/password', 'HomeController@changePasswordPage');
 Route::post('/password/change', 'HomeController@changePassword');

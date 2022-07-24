@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="{{url('css')}}/all.min.css">
 
     <style>
         body {
@@ -135,7 +136,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color: white; font-size: 28px;"></i></span>
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -144,7 +145,7 @@
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li> --}}
                         </ul>
-                        <a class="nav-link text-white" href="{{ url('change/password') }}">Change Password</a>
+                        <a class="nav-link text-white" style="padding-left: 0px" href="{{ url('change/password') }}">Change Password</a>
                         <a href="{{ route('logout') }}" class="btn btn-sm btn-danger"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <b>{{ __('Logout') }}</b></a>
@@ -165,11 +166,11 @@
                 <form action="{{ url('generate/url') }}" method="POST" class="text-center">
                     @csrf
                     <input type="text" name="actual_url" class="form-control mb-2"
-                        placeholder="Type/Paste the URL here">
+                        placeholder="Type/Paste the URL here" required>
                     <button type="submit" class="btn btn-success">Generate</button>
                 </form>
 
-                <table class="table table-striped mt-4">
+                <table class="table table-striped table-responsive mt-4">
                     <thead>
                         <tr>
                             <th scope="col">SL</th>
@@ -206,10 +207,10 @@
     <footer>
         <div class="container-fluid">
             <div class="row pt-2 pb-2">
-                <div class="col-lg-6 text-white">
+                <div class="col-lg-6 text-white text-center text-lg-left">
                     All Rights Reserved &copy; @php echo date("Y") @endphp
                 </div>
-                <div class="col-lg-6 text-right">
+                <div class="col-lg-6 text-center text-lg-right">
                     <a href="http://www.facebook.com/gstl.tech" class="text-white">Developed By Genesis Software &
                         Technology
                         Ltd.</a>
@@ -224,6 +225,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
+    <script src="{{url('js')}}/c218529370.js"></script>
 
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
