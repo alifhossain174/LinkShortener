@@ -11,7 +11,7 @@
 
     <style>
         body {
-            padding-top: 60px;
+            padding-top: 100px;
         }
 
         .header {
@@ -47,7 +47,8 @@
         <div class="header">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg">
-                    <a class="navbar-brand" href="{{ url('/home') }}"><b class="text-white">Link Shortener</b></a>
+                    <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ url('/') }}/images/logo.jpg"
+                            style="width: 80px !important"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
