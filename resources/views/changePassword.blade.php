@@ -11,7 +11,7 @@
 
     <style>
         body {
-            padding-top: 60px
+            padding-top: 60px;
         }
 
         .header {
@@ -24,7 +24,7 @@
             width: 100%;
         }
 
-        .footer {
+        footer {
             background: #373B44;
             background: -webkit-linear-gradient(to right, #4286f4, #373B44);
             background: linear-gradient(to right, #4286f4, #373B44);
@@ -129,15 +129,20 @@
 
 
     <footer>
-        <div class="row">
-            <div class="col-lg-6 text-white">
-                All Rights Reserved &copy; @php echo date("Y") @endphp
-            </div>
-            <div class="col-lg-6 text-right text-white">
-                <a href="http://www.facebook.com/gstl.tech">Genesis Software & Technology Ltd.</a>
+        <div class="container-fluid">
+            <div class="row pt-2 pb-2">
+                <div class="col-lg-6 text-white">
+                    All Rights Reserved &copy; @php echo date("Y") @endphp
+                </div>
+                <div class="col-lg-6 text-right">
+                    <a href="http://www.facebook.com/gstl.tech" class="text-white">Developed By Genesis Software &
+                        Technology
+                        Ltd.</a>
+                </div>
             </div>
         </div>
     </footer>
+
 
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
