@@ -23,6 +23,16 @@
             left: 0;
             width: 100%;
         }
+
+        .footer {
+            background: #373B44;
+            background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+            background: linear-gradient(to right, #4286f4, #373B44);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -57,7 +67,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="mb-5 pb-5">
         <div class="middle_section">
             <div class="container">
 
@@ -100,6 +110,18 @@
             </div>
         </div>
     </section>
+
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-6 text-white">
+                All Rights Reserved &copy; @php echo date("Y") @endphp
+            </div>
+            <div class="col-lg-6 text-right text-white">
+                <a href="http://www.facebook.com/gstl.tech">Genesis Software & Technology Ltd.</a>
+            </div>
+        </div>
+    </footer>
 
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
