@@ -249,7 +249,7 @@
 
     <script>
         $(window).on("load", function() {
-            $(".loader-wrapper").fadeOut("slow");
+            $(".loader-wrapper").delay(2000).fadeOut("slow");
         });
     </script>
 
