@@ -180,14 +180,14 @@
                                     <div class="form-group">
                                         <label>User Name</label>
                                         <input type="text" name="name" class="form-control"
-                                            value="{{ $userInfo->name }}">
+                                            value="{{ $userInfo->name }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>User Email</label>
                                         <input type="text" name="email" class="form-control"
-                                            value="{{ $userInfo->email }}">
+                                            value="{{ $userInfo->email }}" readonly>
                                     </div>
                                 </div>
                             </div>
